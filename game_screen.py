@@ -2,7 +2,7 @@ import pygame
 
 
 pygame.display.init()
-img = pygame.image.load('interface.jpg')
+img = pygame.image.load('картинки/interface.jpg')
 
 screen = pygame.display.set_mode(img.get_size(), pygame.FULLSCREEN)
 w, h = screen.get_size()
@@ -13,7 +13,7 @@ img = pygame.transform.scale(img, (w, h))
 
 class Curs:
     def __init__(self):
-        self.Cursor = pygame.image.load('cursor.png')
+        self.Cursor = pygame.image.load('картинки/cursor.png')
         pygame.mouse.set_visible(False)
         self.Cursor = pygame.transform.scale(self.Cursor, (33, 42))
 
