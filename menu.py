@@ -45,7 +45,7 @@ class setting(pygame.sprite.Sprite):
 
 
 class ex(pygame.sprite.Sprite):
-    image = pygame.image.load("картинки/interface.jpg")
+    image = pygame.image.load("картинки/ex.png")
 
     def __init__(self, *group):
         super().__init__(*group)
@@ -60,6 +60,7 @@ new(all_sprites)
 reg(all_sprites)
 setting(all_sprites)
 ex(all_sprites)
+pos = None
 while running:
     screen.fill((0, 0, 0))
     screen.blit(img, (0, 0))
@@ -67,15 +68,13 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:  # program closure
             running = False
-        '''if event.type == pygame.MOUSEMOTION:  # getting mouse position
+        if event.type == pygame.MOUSEMOTION:  # getting mouse position
             pos = event.pos
         if event.type == pygame.MOUSEBUTTONUP:  # creating a menu button
             if (w // 27) < pos[0] < (w // 27) + (w // 5):
                 if (h // 171) < pos[1] < (h // 171) + (h // 26):
-                    running = False'''
+                    running = False
 
-    '''if pygame.mouse.get_focused():
-        Cursor.render(pos)'''
 
     pygame.display.flip()
 pygame.quit()
