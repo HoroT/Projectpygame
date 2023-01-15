@@ -1,11 +1,20 @@
 import pygame as pg
 
+pg.init()
+size = w, h = 800, 800
+screen = pg.display.set_mode(size)
+
 
 def main():
-    screen = pg.display.set_mode((640, 480))
     font = pg.font.Font(None, 32)
-    clock = pg.time.Clock()
-    input_box = pg.Rect(100, 100, 140, 32)
+    input_box = pg.Rect(w // 3 * 2, h // 8, 140, 32)
+    input_box1 = pg.Rect(w // 3 * 2, h // 8 * 2, 140, 32)
+    input_box2 = pg.Rect(w // 3 * 2, h // 8 * 3, 140, 32)
+    input_box3 = pg.Rect(w // 3 * 2, h // 8 * 4, 140, 32)
+    input_box4 = pg.Rect(w // 3 * 2, h // 8 * 5, 140, 32)
+    input_box5 = pg.Rect(w // 3 * 2, h // 8 * 6, 140, 32)
+    input_box6 = pg.Rect(w // 3 * 2, h // 8 * 7, 140, 32)
+
     color_inactive = pg.Color('lightskyblue3')
     color_active = pg.Color('dodgerblue2')
     color = color_inactive
@@ -40,18 +49,41 @@ def main():
         # Render the current text.
         txt_surface = font.render(text, True, color)
         # Resize the box if the text is too long.
-        width = max(200, txt_surface.get_width()+10)
+        width = max(200, txt_surface.get_width() + 10)
         input_box.w = width
-        # Blit the text.
-        screen.blit(txt_surface, (input_box.x+5, input_box.y+5))
-        # Blit the input_box rect.
+        input_box1.w = width
+        input_box2.w = width
+        input_box3.w = width
+        input_box4.w = width
+        input_box5.w = width
+        input_box6.w = width
+
+        screen.blit(txt_surface, (input_box.x + 5, input_box.y + 5))
         pg.draw.rect(screen, color, input_box, 2)
+
+        screen.blit(txt_surface, (input_box1.x + 5, input_box1.y + 5))
+        pg.draw.rect(screen, color, input_box1, 2)
+
+        screen.blit(txt_surface, (input_box2.x + 5, input_box2.y + 5))
+        pg.draw.rect(screen, color, input_box2, 2)
+
+        screen.blit(txt_surface, (input_box3.x + 5, input_box3.y + 5))
+        pg.draw.rect(screen, color, input_box3, 2)
+
+        screen.blit(txt_surface, (input_box4.x + 5, input_box4.y + 5))
+        pg.draw.rect(screen, color, input_box4, 2)
+
+        screen.blit(txt_surface, (input_box5.x + 5, input_box5.y + 5))
+        pg.draw.rect(screen, color, input_box5, 2)
+
+        screen.blit(txt_surface, (input_box6.x + 5, input_box6.y + 5))
+        pg.draw.rect(screen, color, input_box6, 2)
 
         pg.display.flip()
         clock.tick(30)
 
 
 if __name__ == '__main__':
-    pg.init()
+    clock = pg.time.Clock()
     main()
     pg.quit()
