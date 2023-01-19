@@ -5,9 +5,6 @@ pygame.display.init()
 size = w, h = pygame.display.Info().current_w, pygame.display.Info().current_h
 screen = pygame.display.set_mode()
 
-set_sprites = pygame.sprite.Group()
-sprit = pygame.sprite.Sprite()
-
 
 def draw(screen):
     screen.fill((22, 22, 22))
@@ -97,16 +94,6 @@ def draw1(screen):
                                            text_w1 + 130, text_h1 + 20), 1)
 
 
-'''def main():
-    # screen = pygame.display.set_mode((640, 480))
-    font = pygame.font.Font(None, 32)
-    clock = pygame.time.Clock()
-    input_box = pygame.Rect(100, 100, 140, 32)
-    color_inactive = pygame.Color('lightskyblue3')
-    color_active = pygame.Color('dodgerblue2')
-    color = color_inactive
-    active = False
-    text = '''''
 font = pygame.font.Font(None, 32)
 clock = pygame.time.Clock()
 input_box = pygame.Rect(w // 3 * 1.5, h // 8 - 30, 500, 58)
@@ -120,8 +107,11 @@ input_box6 = pygame.Rect(w // 3 * 1.5, h // 8 * 7 - 30, 500, 58)
 color_inactive = pygame.Color('lightskyblue3')
 color_active = pygame.Color('dodgerblue2')
 color = color_inactive
-active = False
-text = ''
+color1, color2, color3, color4, color5, color6 = color_inactive, color_inactive, color_inactive, \
+                                                 color_inactive, color_inactive, color_inactive
+active, active1, active2, active3, active4, active5, active6 = False, False, False, False, False, False, False
+text, text1, text2, text3, text4, text5, text6 = ' ' * 14 + 'w', ' ' * 14 + 's', ' ' * 14 + 'd', \
+                                                 ' ' * 14 + 'a', ' ' * 14 + 'q', ' ' * 14 + 'f', ' ' * 14 + 'r'
 
 setp = False
 start = True
@@ -138,9 +128,45 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if input_box.collidepoint(event.pos):
                 active = not active
+
+            elif input_box1.collidepoint(event.pos) and not active1:
+                active1 = True
+            elif input_box2.collidepoint(event.pos) and not active2:
+                active2 = True
+            elif input_box3.collidepoint(event.pos) and not active3:
+                active3 = True
+            elif input_box4.collidepoint(event.pos) and not active4:
+                active4 = True
+            elif input_box4.collidepoint(event.pos) and not active4:
+                active4 = True
+            elif input_box5.collidepoint(event.pos) and not active5:
+                active5 = True
+            elif input_box6.collidepoint(event.pos) and not active6:
+                active6 = True
+            elif input_box1.collidepoint(event.pos) and active1:
+                active1 = False
+            elif input_box2.collidepoint(event.pos) and active2:
+                active2 = False
+            elif input_box3.collidepoint(event.pos) and active3:
+                active3 = False
+            elif input_box4.collidepoint(event.pos) and active4:
+                active4 = False
+            elif input_box4.collidepoint(event.pos) and active4:
+                active4 = False
+            elif input_box5.collidepoint(event.pos) and active5:
+                active5 = False
+            elif input_box6.collidepoint(event.pos) and active6:
+                active6 = False
             else:
                 active = False
             color = color_active if active else color_inactive
+            color1 = color_active if active1 else color_inactive
+            color2 = color_active if active2 else color_inactive
+            color3 = color_active if active3 else color_inactive
+            color4 = color_active if active4 else color_inactive
+            color5 = color_active if active5 else color_inactive
+            color6 = color_active if active6 else color_inactive
+
         if event.type == pygame.KEYDOWN:
             if active:
                 if event.key == pygame.K_RETURN:
@@ -150,10 +176,65 @@ while running:
                     text = text[:-1]
                 else:
                     text += event.unicode
+            if active1:
+                if event.key == pygame.K_RETURN:
+                    print(text1)
+                    text1 = ''
+                elif event.key == pygame.K_BACKSPACE:
+                    text1 = text1[:-1]
+                else:
+                    text1 += event.unicode
+            if active2:
+                if event.key == pygame.K_RETURN:
+                    print(text1)
+                    text2 = ''
+                elif event.key == pygame.K_BACKSPACE:
+                    text2 = text2[:-1]
+                else:
+                    text2 += event.unicode
+            if active3:
+                if event.key == pygame.K_RETURN:
+                    print(text3)
+                    text3 = ''
+                elif event.key == pygame.K_BACKSPACE:
+                    text3 = text3[:-1]
+                else:
+                    text3 += event.unicode
+            if active4:
+                if event.key == pygame.K_RETURN:
+                    print(text4)
+                    text4 = ''
+                elif event.key == pygame.K_BACKSPACE:
+                    text4 = text4[:-1]
+                else:
+                    text4 += event.unicode
+            if active5:
+                if event.key == pygame.K_RETURN:
+                    print(text5)
+                    text5 = ''
+                elif event.key == pygame.K_BACKSPACE:
+                    text5 = text5[:-1]
+                else:
+                    text5 += event.unicode
+            if active6:
+                if event.key == pygame.K_RETURN:
+                    print(text6)
+                    text6 = ''
+                elif event.key == pygame.K_BACKSPACE:
+                    text6 = text6[:-1]
+                else:
+                    text6 += event.unicode
+
     screen.fill((30, 30, 30))
     draw(screen)
     draw1(screen)
     txt_surface = font.render(text, True, color)
+    txt_surface1 = font.render(text1, True, color)
+    txt_surface2 = font.render(text2, True, color)
+    txt_surface3 = font.render(text3, True, color)
+    txt_surface4 = font.render(text4, True, color)
+    txt_surface5 = font.render(text5, True, color)
+    txt_surface6 = font.render(text6, True, color)
     # Resize the box if the text is too long.
     width = max(200, txt_surface.get_width() + 10)
     input_box.w = width
@@ -167,23 +248,23 @@ while running:
     screen.blit(txt_surface, (input_box.x + 5, input_box.y + 5))
     pygame.draw.rect(screen, color, input_box, 2)
 
-    screen.blit(txt_surface, (input_box1.x + 5, input_box1.y + 5))
-    pygame.draw.rect(screen, color, input_box1, 2)
+    screen.blit(txt_surface1, (input_box1.x + 5, input_box1.y + 5))
+    pygame.draw.rect(screen, color1, input_box1, 2)
 
-    screen.blit(txt_surface, (input_box2.x + 5, input_box2.y + 5))
-    pygame.draw.rect(screen, color, input_box2, 2)
+    screen.blit(txt_surface2, (input_box2.x + 5, input_box2.y + 5))
+    pygame.draw.rect(screen, color2, input_box2, 2)
 
-    screen.blit(txt_surface, (input_box3.x + 5, input_box3.y + 5))
-    pygame.draw.rect(screen, color, input_box3, 2)
+    screen.blit(txt_surface3, (input_box3.x + 5, input_box3.y + 5))
+    pygame.draw.rect(screen, color3, input_box3, 2)
 
-    screen.blit(txt_surface, (input_box4.x + 5, input_box4.y + 5))
-    pygame.draw.rect(screen, color, input_box4, 2)
+    screen.blit(txt_surface4, (input_box4.x + 5, input_box4.y + 5))
+    pygame.draw.rect(screen, color4, input_box4, 2)
 
-    screen.blit(txt_surface, (input_box5.x + 5, input_box5.y + 5))
-    pygame.draw.rect(screen, color, input_box5, 2)
+    screen.blit(txt_surface5, (input_box5.x + 5, input_box5.y + 5))
+    pygame.draw.rect(screen, color5, input_box5, 2)
 
-    screen.blit(txt_surface, (input_box6.x + 5, input_box6.y + 5))
-    pygame.draw.rect(screen, color, input_box6, 2)
+    screen.blit(txt_surface6, (input_box6.x + 5, input_box6.y + 5))
+    pygame.draw.rect(screen, color6, input_box6, 2)
     pygame.display.flip()
     clock.tick(30)
 pygame.quit()
