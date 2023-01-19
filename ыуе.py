@@ -131,8 +131,10 @@ while running:
 
             elif input_box1.collidepoint(event.pos) and not active1:
                 active1 = True
+                active, active2, active3, active4, active5, active6 = False, False, False, False, False, False
             elif input_box2.collidepoint(event.pos) and not active2:
                 active2 = True
+                active1, active, active3, active4, active5, active6 = False, False, False, False, False, False
             elif input_box3.collidepoint(event.pos) and not active3:
                 active3 = True
             elif input_box4.collidepoint(event.pos) and not active4:
@@ -237,13 +239,19 @@ while running:
     txt_surface6 = font.render(text6, True, color)
     # Resize the box if the text is too long.
     width = max(200, txt_surface.get_width() + 10)
+    width1 = max(200, txt_surface1.get_width() + 10)
+    width2 = max(200, txt_surface2.get_width() + 10)
+    width3 = max(200, txt_surface3.get_width() + 10)
+    width4 = max(200, txt_surface4.get_width() + 10)
+    width5 = max(200, txt_surface5.get_width() + 10)
+    width6 = max(200, txt_surface6.get_width() + 10)
     input_box.w = width
-    input_box1.w = width
-    input_box2.w = width
-    input_box3.w = width
-    input_box4.w = width
-    input_box5.w = width
-    input_box6.w = width
+    input_box1.w = width1
+    input_box2.w = width2
+    input_box3.w = width3
+    input_box4.w = width4
+    input_box5.w = width5
+    input_box6.w = width6
 
     screen.blit(txt_surface, (input_box.x + 5, input_box.y + 5))
     pygame.draw.rect(screen, color, input_box, 2)
