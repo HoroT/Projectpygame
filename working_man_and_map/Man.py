@@ -1,15 +1,15 @@
 import pygame
 
 
-
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos_x, pos_y, player_group, all_sprites, tile_width, tile_height):
         super().__init__(player_group, all_sprites)
         self.speed = 50
-        self.forward = AnimatedSprite(pygame.image.load("iamges/walk_forward.jpg"), 1, 5).frames
-        self.back = AnimatedSprite(pygame.image.load("iamges/walk_back.jpg"), 1, 5).frames
-        self.right = AnimatedSprite(pygame.image.load("iamges/walk_right.jpg"), 1, 5).frames
-        self.left = AnimatedSprite(pygame.image.load("iamges/walk_left.jpg"), 1, 5).frames
+        self.forward = AnimatedSprite(pygame.image.load("pictures_and_txt/another_textures/walk_forward.jpg"), 1,
+                                      5).frames
+        self.back = AnimatedSprite(pygame.image.load("pictures_and_txt/another_textures/walk_back.jpg"), 1, 5).frames
+        self.right = AnimatedSprite(pygame.image.load("pictures_and_txt/another_textures/walk_right.jpg"), 1, 5).frames
+        self.left = AnimatedSprite(pygame.image.load("pictures_and_txt/another_textures/walk_left.jpg"), 1, 5).frames
         self.le = 0
         self.ri = 0
         self.fo = 0
@@ -70,7 +70,7 @@ class Player(pygame.sprite.Sprite):
         return self.image
 
 
-class AnimatedSprite(pygame.sprite.Sprite):     # cutting sprites
+class AnimatedSprite(pygame.sprite.Sprite):  # cutting sprites
     def __init__(self, sheet, columns, rows):
         self.frames = []
         self.cut_sheet(sheet, columns, rows)
@@ -84,4 +84,4 @@ class AnimatedSprite(pygame.sprite.Sprite):     # cutting sprites
             for i in range(columns):
                 frame_location = (self.rect.w * i, self.rect.h * j)
                 self.frames.append(sheet.subsurface(pygame.Rect(
-                    frame_location, self.rect.size)))   #
+                    frame_location, self.rect.size)))  #
