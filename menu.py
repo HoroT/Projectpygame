@@ -23,7 +23,7 @@ class new(pygame.sprite.Sprite):
 
 
 class reg(pygame.sprite.Sprite):
-    image = pygame.image.load("картинки/fon_menu.jpg")
+    image = pygame.image.load("картинки/img.png")
 
     def __init__(self, *group):
         super().__init__(*group)
@@ -70,9 +70,9 @@ while running:
             running = False
         if event.type == pygame.MOUSEMOTION:  # getting mouse position
             pos = event.pos
-        if event.type == pygame.MOUSEBUTTONUP:  # creating a menu button
-            if (w // 27) < pos[0] < (w // 27) + (w // 5):
-                if (h // 171) < pos[1] < (h // 171) + (h // 26):
+        if event.type == pygame.MOUSEBUTTONDOWN:  # creating a menu button
+            if w // 2 - 200 < pos[0] < w // 2 - 200 + 400:
+                if h // 3 + 150 < pos[1] < h // 3 + 150 + 50:
                     running = False
 
     pygame.display.flip()
