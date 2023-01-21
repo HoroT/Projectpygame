@@ -93,6 +93,84 @@ def draw1(screen):
     pygame.draw.rect(screen, (0, 255, 0), (text_x1 - 10, text_y1 - 10,
                                            text_w1 + 130, text_h1 + 20), 1)
 
+    text2 = font.render("Подтвердить изменения.", True, (100, 255, 100))
+    text_x2 = w // 4 - text.get_width() // 2 + 29
+    text_y2 = h // 10 * 10 - text.get_height() * 1.5
+    text_w2 = text.get_width()
+    text_h2 = text.get_height()
+    screen.blit(text2, (text_x2, text_y2))
+    pygame.draw.rect(screen, (0, 255, 0), (text_x2 - 10, text_y2 - 10,
+                                           text_w2 + 350, text_h2 + 20), 1)
+
+
+def draw2(screen, rub=True):
+    col = (100, 255, 100)
+    if rub:
+        col = (22, 22, 22)
+    font = pygame.font.Font(None, 50)
+    text = font.render("Ошибка!", True, col)
+    text_x = w // 3 * 2.5 - text.get_width() // 2
+    text_y = h // 8 - text.get_height() // 2
+    text_w = text.get_width()
+    text_h = text.get_height()
+    screen.blit(text, (text_x, text_y))
+    pygame.draw.rect(screen, col, (text_x - 10, text_y - 10,
+                                   text_w + 20, text_h + 20), 1)
+
+    text1 = font.render("Ошибка!", True, col)
+    text_x1 = w // 3 * 2.5 - text.get_width() // 2
+    text_y1 = h // 8 * 2 - text.get_height() // 2
+    text_w1 = text.get_width()
+    text_h1 = text.get_height()
+    screen.blit(text1, (text_x1, text_y1))
+    pygame.draw.rect(screen, col, (text_x1 - 10, text_y1 - 10,
+                                   text_w1 + 20, text_h1 + 20), 1)
+
+    text2 = font.render("Ошибка!", True, col)
+    text_x2 = w // 3 * 2.5 - text.get_width() // 2
+    text_y2 = h // 8 * 3 - text.get_height() // 2
+    text_w2 = text.get_width()
+    text_h2 = text.get_height()
+    screen.blit(text2, (text_x2, text_y2))
+    pygame.draw.rect(screen, col, (text_x2 - 10, text_y2 - 10,
+                                   text_w2 + 20, text_h2 + 20), 1)
+
+    text3 = font.render("Ошибка!", True, col)
+    text_x3 = w // 3 * 2.5 - text.get_width() // 2
+    text_y3 = h // 8 * 4 - text.get_height() // 2
+    text_w3 = text.get_width()
+    text_h3 = text.get_height()
+    screen.blit(text3, (text_x3, text_y3))
+    pygame.draw.rect(screen, col, (text_x3 - 10, text_y3 - 10,
+                                   text_w3 + 20, text_h3 + 20), 1)
+
+    text4 = font.render("Ошибка!", True, col)
+    text_x4 = w // 3 * 2.5 - text.get_width() // 2
+    text_y4 = h // 8 * 5 - text.get_height() // 2
+    text_w4 = text.get_width()
+    text_h4 = text.get_height()
+    screen.blit(text4, (text_x4, text_y4))
+    pygame.draw.rect(screen, col, (text_x4 - 10, text_y4 - 10,
+                                   text_w4 + 20, text_h4 + 20), 1)
+
+    text5 = font.render("Ошибка!", True, col)
+    text_x5 = w // 3 * 2.5 - text.get_width() // 2
+    text_y5 = h // 8 * 6 - text.get_height() // 2
+    text_w5 = text.get_width()
+    text_h5 = text.get_height()
+    screen.blit(text5, (text_x5, text_y5))
+    pygame.draw.rect(screen, col, (text_x5 - 10, text_y5 - 10,
+                                   text_w5 + 20, text_h5 + 20), 1)
+
+    text6 = font.render("Ошибка!", True, col)
+    text_x6 = w // 3 * 2.5 - text.get_width() // 2
+    text_y6 = h // 8 * 7 - text.get_height() // 2
+    text_w6 = text.get_width()
+    text_h6 = text.get_height()
+    screen.blit(text6, (text_x6, text_y6))
+    pygame.draw.rect(screen, col, (text_x6 - 10, text_y6 - 10,
+                                   text_w6 + 20, text_h6 + 20), 1)
+
 
 font = pygame.font.Font(None, 32)
 clock = pygame.time.Clock()
@@ -137,14 +215,16 @@ while running:
                 active1, active, active3, active4, active5, active6 = False, False, False, False, False, False
             elif input_box3.collidepoint(event.pos) and not active3:
                 active3 = True
+                active, active2, active, active4, active5, active6 = False, False, False, False, False, False
             elif input_box4.collidepoint(event.pos) and not active4:
                 active4 = True
-            elif input_box4.collidepoint(event.pos) and not active4:
-                active4 = True
+                active, active2, active3, active, active5, active6 = False, False, False, False, False, False
             elif input_box5.collidepoint(event.pos) and not active5:
                 active5 = True
+                active, active2, active3, active4, active, active6 = False, False, False, False, False, False
             elif input_box6.collidepoint(event.pos) and not active6:
                 active6 = True
+                active, active2, active3, active4, active5, active = False, False, False, False, False, False
             elif input_box1.collidepoint(event.pos) and active1:
                 active1 = False
             elif input_box2.collidepoint(event.pos) and active2:
@@ -230,6 +310,7 @@ while running:
     screen.fill((30, 30, 30))
     draw(screen)
     draw1(screen)
+    draw2(screen)
     txt_surface = font.render(text, True, color)
     txt_surface1 = font.render(text1, True, color)
     txt_surface2 = font.render(text2, True, color)
