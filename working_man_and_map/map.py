@@ -1,4 +1,4 @@
-import Sprite
+import Man
 
 import sys
 
