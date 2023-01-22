@@ -70,6 +70,7 @@ class Player(pygame.sprite.Sprite):
         return self.image
 
 
+
 class AnimatedSprite(pygame.sprite.Sprite):  # cutting sprites
     def __init__(self, sheet, columns, rows):
         self.frames = []

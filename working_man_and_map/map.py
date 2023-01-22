@@ -1,6 +1,5 @@
 from Man import Player
 
-
 import sys
 
 import pygame
@@ -19,14 +18,12 @@ def load_level(filename):
     return list(map(lambda x: x.ljust(max_width, '.'), level_map))
 
 
-class Tile(pygame.sprite.Sprite):   # determination of cells
+class Tile(pygame.sprite.Sprite):  # determination of cells
     def __init__(self, tile_type, pos_x, pos_y):
         super().__init__(tiles_group, all_sprites)
         self.image = tile_images[tile_type]
         self.rect = self.image.get_rect().move(
             tile_width * pos_x, tile_height * pos_y)
-
-
 
 
 def generate_level(level):
@@ -100,11 +97,10 @@ if __name__ == '__main__':
 
     pygame.display.init()
 
-    pygame.key.set_repeat(200, 70) # function for pressing the key
+    pygame.key.set_repeat(200, 70)  # function for pressing the key
 
     size = WIDTH, HEIGHT = 500, 500
     screen = pygame.display.set_mode(size)
-
 
     tile_images = {
         'hor_wall': pygame.image.load('pictures_and_txt/walls/hor_wall.png'),
@@ -130,6 +126,7 @@ if __name__ == '__main__':
     all_sprites = pygame.sprite.Group()
     tiles_group = pygame.sprite.Group()
     player_group = pygame.sprite.Group()
+    wall_group = pygame.sprite.Group()
 
     player, level_x, level_y = generate_level(load_level('map_cart1.txt'))
 
@@ -145,9 +142,8 @@ if __name__ == '__main__':
             elif event.type == pygame.KEYDOWN:
                 player.update()
 
-                # изменяем ракурс камеры
         camera.update(player)
-                # обновляем положение всех спрайтов
+        # обновляем положение всех спрайтов
         for sprite in all_sprites:
             camera.apply(sprite)
 
