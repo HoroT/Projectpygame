@@ -1,4 +1,4 @@
-from Man import Player
+import Sprite
 
 import sys
 
@@ -6,7 +6,7 @@ import pygame
 
 
 def load_level(filename):
-    filename = filename
+    filename = "iamges/map_images/" + filename
     # читаем уровень, убирая символы перевода строки
     with open(filename, 'r') as mapFile:
         level_map = [line.strip() for line in mapFile]
@@ -14,17 +14,8 @@ def load_level(filename):
     # и подсчитываем максимальную длину
     max_width = max(map(len, level_map))
 
-    # дополняем каждую строку пустыми клетками ('w')
-    return list(map(lambda x: x.ljust(max_width, 'w'), level_map))
-
-
-class Tile(pygame.sprite.Sprite):  # determination of cells
-    def __init__(self, tile_type, pos_x, pos_y):
-        super().__init__(tiles_group, all_sprites)
-        self.image = tile_images[tile_type]
-        self.rect = self.image.get_rect().move(
-            tile_width * pos_x, tile_height * pos_y)
-
+    # дополняем каждую строку пустыми клетками ('.')
+    return list(map(lambda x: x.ljust(max_width, '.'), level_map))
 
 def generate_level(level):
     new_player, x, y = None, None, None
@@ -38,7 +29,7 @@ def generate_level(level):
                 Tile('ver_wall', x, y)
             elif level[y][x] == '@':
                 Tile('empty', x, y)
-                new_player = Player(x, y, player_group, all_sprites, tile_width, tile_height)
+                new_player = Sprite.Player(x, y, player_group, all_sprites, tile_width, tile_height)
             elif level[y][x] == '2':
                 Tile('r1_wall', x, y)
             elif level[y][x] == '3':
@@ -68,10 +59,18 @@ def generate_level(level):
     # вернем игрока, а также размер поля в клетках
     return new_player, x, y
 
-
 def terminate():
     pygame.quit()
     sys.exit()
+
+
+class Tile(pygame.sprite.Sprite):   # determination of cells
+    def __init__(self, tile_type, pos_x, pos_y):
+        super().__init__(tiles_group, all_sprites)
+        self.tile_type = tile_type
+        self.image = tile_images[tile_type]
+        self.rect = self.image.get_rect().move(
+            tile_width * pos_x, tile_height * pos_y)
 
 
 class Camera:
@@ -97,28 +96,29 @@ if __name__ == '__main__':
 
     pygame.display.init()
 
-    pygame.key.set_repeat(200, 70)  # function for pressing the key
+    pygame.key.set_repeat(200, 70) # function for pressing the key
 
     size = WIDTH, HEIGHT = 500, 500
     screen = pygame.display.set_mode(size)
 
+
     tile_images = {
-        'hor_wall': pygame.image.load('pictures_and_txt/walls/hor_wall.png'),
-        'empty': pygame.image.load('pictures_and_txt/another_textures/ice_land.png'),
-        'ver_wall': pygame.image.load('pictures_and_txt/walls/ver_wall.png'),
-        'r1_wall': pygame.image.load('pictures_and_txt/walls/right_wall.png'),
-        'l1_wall': pygame.image.load('pictures_and_txt/walls/left_wall.png'),
-        'r2_wall': pygame.image.load('pictures_and_txt/walls/right_wall2.png'),
-        'l2_wall': pygame.image.load('pictures_and_txt/walls/left_wall2.png'),
-        't1_u': pygame.image.load('pictures_and_txt/forest/t1_u.png'),
-        't2_u': pygame.image.load('pictures_and_txt/forest/t2_u.png'),
-        't3_u': pygame.image.load('pictures_and_txt/forest/t3_u.png'),
-        't1_d': pygame.image.load('pictures_and_txt/forest/t1_d.png'),
-        't2_d': pygame.image.load('pictures_and_txt/forest/t2_d.png'),
-        't3_d': pygame.image.load('pictures_and_txt/forest/t3_d.png'),
-        'rd': pygame.image.load('pictures_and_txt/another_textures/road.png'),
-        'wt': pygame.image.load('pictures_and_txt/another_textures/water.png'),
-        'farm': pygame.image.load('pictures_and_txt/another_textures/farm.png')
+        'hor_wall': pygame.image.load('iamges/map_images/hor_wall.png'),
+        'empty': pygame.image.load('iamges/map_images/ice_land.png'),
+        'ver_wall': pygame.image.load('iamges/map_images/ver_wall.png'),
+        'r1_wall': pygame.image.load('iamges/map_images/right_wall.png'),
+        'l1_wall': pygame.image.load('iamges/map_images/left_wall.png'),
+        'r2_wall': pygame.image.load('iamges/map_images/right_wall2.png'),
+        'l2_wall': pygame.image.load('iamges/map_images/left_wall2.png'),
+        't1_u': pygame.image.load('iamges/map_images/t1_u.png'),
+        't2_u': pygame.image.load('iamges/map_images/t2_u.png'),
+        't3_u': pygame.image.load('iamges/map_images/t3_u.png'),
+        't1_d': pygame.image.load('iamges/map_images/t1_d.png'),
+        't2_d': pygame.image.load('iamges/map_images/t2_d.png'),
+        't3_d': pygame.image.load('iamges/map_images/t3_d.png'),
+        'rd': pygame.image.load('iamges/map_images/road.png'),
+        'wt': pygame.image.load('iamges/map_images/water.png'),
+        'farm': pygame.image.load('iamges/map_images/farm.png')
     }
 
     tile_width = tile_height = 50
@@ -126,9 +126,8 @@ if __name__ == '__main__':
     all_sprites = pygame.sprite.Group()
     tiles_group = pygame.sprite.Group()
     player_group = pygame.sprite.Group()
-    wall_group = pygame.sprite.Group()
-    g = 1
-    player, level_x, level_y = generate_level(load_level('map_cart1.txt'))
+
+    player, level_x, level_y = generate_level(load_level('map.txt'))
 
     camera = Camera()
     for sprite in all_sprites:
@@ -140,13 +139,18 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
-                player.update()
-            '''if g == 1:
-                g = 2
-                player, level_x, level_y = generate_level(load_level('map_cart2.txt'))'''
+                sp = pygame.sprite.spritecollide(player, tiles_group, dokill=None)
+                player.update(sp)
+
+
+
+
+
+
 
         camera.update(player)
-        # обновляем положение всех спрайтов
+
+                # обновляем положение всех спрайтов
         for sprite in all_sprites:
             camera.apply(sprite)
 
