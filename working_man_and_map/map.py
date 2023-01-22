@@ -140,7 +140,8 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
-                player.update()
+                sp = pygame.sprite.spritecollide(player, tiles_group, dokill=None)
+                player.update(sp)
             '''if g == 1:
                 g = 2
                 player, level_x, level_y = generate_level(load_level('map_cart2.txt'))'''
