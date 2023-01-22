@@ -127,7 +127,7 @@ if __name__ == '__main__':
     tiles_group = pygame.sprite.Group()
     player_group = pygame.sprite.Group()
     wall_group = pygame.sprite.Group()
-
+    g = 1
     player, level_x, level_y = generate_level(load_level('map_cart1.txt'))
 
     camera = Camera()
@@ -141,6 +141,9 @@ if __name__ == '__main__':
                 running = False
             elif event.type == pygame.KEYDOWN:
                 player.update()
+            '''if g == 1:
+                g = 2
+                player, level_x, level_y = generate_level(load_level('map_cart2.txt'))'''
 
         camera.update(player)
         # обновляем положение всех спрайтов
