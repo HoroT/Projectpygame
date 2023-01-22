@@ -14,8 +14,8 @@ def load_level(filename):
     # и подсчитываем максимальную длину
     max_width = max(map(len, level_map))
 
-    # дополняем каждую строку пустыми клетками ('.')
-    return list(map(lambda x: x.ljust(max_width, '.'), level_map))
+    # дополняем каждую строку пустыми клетками ('w')
+    return list(map(lambda x: x.ljust(max_width, 'w'), level_map))
 
 
 class Tile(pygame.sprite.Sprite):  # determination of cells
